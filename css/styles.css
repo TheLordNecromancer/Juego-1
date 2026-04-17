@@ -1,0 +1,130 @@
+@keyframes textoAnimacion1 {
+    0% { opacity: 1; text-shadow: 0 0 10px #00ffcc; }
+    20% { opacity: 0; text-shadow: none; }
+    25% { opacity: 1; text-shadow: 0 0 20px #00ffcc; }
+    50% { opacity: 0.5; text-shadow: 0 0 5px #004033; }
+    70% { opacity: 0; text-shadow: none; }
+    75% { opacity: 1; text-shadow: 0 0 15px #00ffcc; }
+    100% { opacity: 1; text-shadow: 0 0 10px #00ffcc; }
+}
+
+@keyframes textoAnimacion2 {
+    0%   { color: #ff00ff; }
+    25%  { color: #6b006b; }
+    50%  { color: #ba00ba; }
+    75%  { color: #6b006b; }
+    100% { color: #ff00ff; }
+}
+
+@font-face {
+    font-family: "chintzy";
+    src: url('../FONTS/chintzy.ttf');
+}
+
+body {
+    background-color: #00050b;
+    margin: 0;
+}
+
+header {
+    background: #001024;
+    border-bottom: 5px solid #00ffcc;
+    margin-bottom: 30px;
+}
+
+main {
+    text-align: center;
+}
+
+footer {
+    background: #001024;
+    border-top: 5px solid #00ffcc;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    color: #00ffcc;
+    font-family:"chintzy";
+    animation: textoAnimacion1 2s infinite steps(1);
+    font-size: 80px;
+    letter-spacing: 8px;
+    padding: 15px;
+    text-shadow: 0 0 20px #00ffcc;
+}
+
+h2 {
+    color: #ff00ff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    margin-top: 20px;
+    animation: textoAnimacion2 4s infinite ease-in-out;
+    text-shadow: 0 0 8px #ff00ff62;
+}
+
+.botones button {
+    background-color: #001024;
+    color: #ff00ff;
+    border: 3px solid #ff00ff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+.botones button:hover {
+    background-color: #ff00ff;
+    color: #00050b;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+section {
+    display: inline-block;
+}
+
+#contenedor {
+    display: inline-block;
+    vertical-align: top;
+    width: 800px;
+    height: 600px;
+    margin-right: 100px;
+    border: 5px solid #00ffcc;
+    background-color: #00050b;
+    box-shadow: 0 0 20px #00ffcc;
+    border-radius: 5px;
+}
+
+aside {
+    display: inline-block;
+    vertical-align: top;
+    width: 350px;
+    margin: 20px;
+    background-color: #00102467;
+    border: 5px solid #00ffcc;
+    padding: 15px;
+    box-shadow: 0 0 20px #00ffcc;
+    border-radius: 5px;
+    text-align: left;
+}
+
+p, li {
+    font-size: 20px;
+    color: #cccccc;
+}
+
+ul {
+    padding-left: 15px;
+}
+
+audio {
+    display: block;
+    margin: 30px auto;
+    width: 60%;
+    border-radius: 5px;
+    background-color: #00ffcc;
+    padding: 5px;
+}
