@@ -1,4 +1,4 @@
-// Juego caza planetas
+// Juego EarthEater
 
 const config = {
     type: Phaser.AUTO,
@@ -24,10 +24,9 @@ let vida = 3;
 let vidaText;
 let textoPerder;
 let gameOver = false;
-let damageCooldown = false; // Variable global correcta
+let damageCooldown = false;
 
 function preload() {
-    // Error corregido: Añadidas comillas a la ruta
     this.load.image('fondo', 'assets/bg/bg_layer2.png');
 
     this.load.image('planet', 'assets/entities/planet/planet_1.png');
@@ -63,8 +62,12 @@ function create() {
     this.anims.create({
         key: 'volar',
         frames: [
-            { key: 'fly_1' }, { key: 'fly_2' }, { key: 'fly_3' },
-            { key: 'fly_4' }, { key: 'fly_5' }, { key: 'fly_6' }
+            { key: 'fly_1' },
+            { key: 'fly_2' },
+            { key: 'fly_3' },
+            { key: 'fly_4' },
+            { key: 'fly_5' },
+            { key: 'fly_6' }
         ],
         frameRate: 10,
         repeat: -1
@@ -73,8 +76,12 @@ function create() {
     this.anims.create({
         key: 'morir',
         frames: [
-            { key: 'death_1' }, { key: 'death_2' }, { key: 'death_3' },
-            { key: 'death_4' }, { key: 'death_5' }, { key: 'death_6' }
+            { key: 'death_1' },
+            { key: 'death_2' },
+            { key: 'death_3' },
+            { key: 'death_4' },
+            { key: 'death_5' },
+            { key: 'death_6' }
         ],
         frameRate: 8,
         repeat: 0
@@ -200,14 +207,13 @@ function catchPlanet() {
 }
 
 function catchBlackHole() {
-    // Si el cooldown está activo, no procesamos la colisión
     if (damageCooldown) return;
 
     blackHoles.forEach(blackHole => {
         if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), blackHole.getBounds())) {
             vida--;
             vidaText.setText('Vida: ' + vida);
-            damageCooldown = true; // Activar cooldown
+            damageCooldown = true;
 
             player.setTint(0xffffff);
             
@@ -221,7 +227,7 @@ function catchBlackHole() {
             });
 
             this.time.delayedCall(1500, () => {
-                damageCooldown = false; // Desactivar cooldown
+                damageCooldown = false;
                 player.clearTint();
                 player.alpha = 1;
             }, [], this);
