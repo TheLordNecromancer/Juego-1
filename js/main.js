@@ -15,18 +15,35 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+const btnIniciar = document.getElementById("btnIniciar");
+const btnReiniciar = document.getElementById("btnReiniciar");
+const btnPausar = document.getElementById("btnPausar");
+
 let currentScene;
+
+// Entidades
+
 let player;
 let cursors;
 let planets = [];
 let blackHoles = [];
+
+// Variables de puntuaciones
 let score = 0;
 let scoreText;
 let vida = 3;
 let vidaText;
 let textoPerder;
+let gameTimer = 0;
+let timpoRestante = 30;
+let textoContrareloj;
+
+// Mecanicas y Condiciones de Juego
 let gameOver = false;
 let damageCooldown = false;
+let puntosNecesarios = 50;
+
+// Función PRELOAD
 
 function preload() {
     this.load.image('fondo', 'assets/bg/bg_layer2.png');
@@ -51,6 +68,8 @@ function preload() {
     this.load.image('death_5', 'assets/entities/player/death/death_5.png');
     this.load.image('death_6', 'assets/entities/player/death/death_6.png');
 }
+
+// Función CREATE
 
 function create() {
 
@@ -96,6 +115,7 @@ function create() {
     createPlanet.call(this);
     createBlackHole.call(this);
     addScore.call(this);
+    addTimer.call(this);
 }
 
 function update() {
@@ -115,17 +135,17 @@ function update() {
 
 function playerMovement() {
     if (cursors.left.isDown) {
-        player.x -= 8;
+        player.x -= 6;
         player.flipX = true;
     } else if (cursors.right.isDown) {
-        player.x += 8;
+        player.x += 6;
         player.flipX = false;
     }
 
     if (cursors.up.isDown) {
-        player.y -= 8;
+        player.y -= 6;
     } else if (cursors.down.isDown) {
-        player.y += 8;
+        player.y += 6;
     }
 
     player.play('volar', true);
@@ -138,6 +158,15 @@ function playerLose() {
     textoPerder = this.add.text(400, 300, 'HAS PERDIDO', {
         fontSize: '40px',
         fill: '#ffffff',
+        align: 'center'
+    }).setOrigin(0.5);
+}
+
+function playerWin(){
+    gameOver = true;
+    this.add.text(400, 300, '¡VICTORIA ESPACIAL!', {
+        fontSize: '40px',
+        fill: '#00ff00',
         align: 'center'
     }).setOrigin(0.5);
 }
@@ -173,9 +202,20 @@ function setBlackHoleMovement(blackHole) {
 }
 
 function addScore() {
-    scoreText = this.add.text(10, 10, 'Puntos: 0', { fontSize: '20px', fill: '#ffffff' });
+    scoreText = this.add.text(10, 10, 'Puntos: ' + score, { fontSize: '20px', fill: '#ffffff' });
     vidaText = this.add.text(10, 40, 'Vida: ' + vida, { fontSize: '20px', fill: '#ffffff' });
+    textoContrareloj = this.add.text(10, 70, 'Tiempo: ' + timpoRestante, { fontSize: '20px', fill: '#ffffff' });
 }
+
+function addTimer(){
+    gameTimer = this.time.addEvent({
+        delay:1000,
+        callback: modoContrareloj,
+        callbackScope: this,
+        loop: true
+    })
+}
+
 
 function stopPlayerOutOfBounds() {
     player.x = Phaser.Math.Clamp(player.x, 20, 780);
@@ -245,9 +285,22 @@ function catchBlackHole() {
     });
 }
 
-const btnIniciar = document.getElementById("btnIniciar");
-const btnReiniciar = document.getElementById("btnReiniciar");
-const btnPausar = document.getElementById("btnPausar");
+function modoContrareloj() {
+    if (gameOver) return;
+
+    timpoRestante--;
+    textoContrareloj.setText('Tiempo: ' + timpoRestante);
+
+    if (timpoRestante <= 0) {
+        gameTimer.remove(); // Detener el reloj
+        
+        if (score >= puntosNecesarios) {
+            playerWin.call(this);
+        } else {
+            playerLose.call(this);
+        }
+    }
+}
 
 btnIniciar.addEventListener("click", () => {
     if (currentScene.scene.isPaused()) {
