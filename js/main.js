@@ -6,6 +6,7 @@ const config = {
     height: 600,
     parent: 'contenedor',
     scene: {
+        key: 'gameScene',
         preload: preload,
         create: create,
         update: update
@@ -14,6 +15,7 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+let currentScene;
 let player;
 let cursors;
 let planets = [];
@@ -51,6 +53,10 @@ function preload() {
 }
 
 function create() {
+
+    currentScene = this;
+    this.scene.pause();
+
     let background = this.add.image(400, 300, 'fondo');
     background.setDisplaySize(800, 600);
     background.setDepth(-1);
@@ -128,6 +134,7 @@ function playerMovement() {
 function playerLose() {
     gameOver = true;
     player.play('morir', true);
+    this.add.rectangle(400, 300, 800, 600, 0x000000, 0.5);
     textoPerder = this.add.text(400, 300, 'HAS PERDIDO', {
         fontSize: '40px',
         fill: '#ffffff',
@@ -237,3 +244,30 @@ function catchBlackHole() {
         }
     });
 }
+
+const btnIniciar = document.getElementById("btnIniciar");
+const btnReiniciar = document.getElementById("btnReiniciar");
+const btnPausar = document.getElementById("btnPausar");
+
+btnIniciar.addEventListener("click", () => {
+    if (currentScene.scene.isPaused()) {
+        currentScene.scene.resume();
+    }
+});
+
+btnPausar.addEventListener("click", () => {
+    if (!currentScene.scene.isPaused()) {
+        currentScene.scene.pause();
+    }
+});
+
+btnReiniciar.addEventListener("click", () => {
+    score = 0;
+    vida = 3;
+    planets = [];
+    blackHoles = [];
+    gameOver = false;
+    damageCooldown = false;
+
+    currentScene.scene.restart();
+});

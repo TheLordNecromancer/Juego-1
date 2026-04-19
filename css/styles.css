@@ -63,6 +63,12 @@ h2 {
     text-shadow: 0 0 8px #ff00ff62;
 }
 
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
 .botones button {
     background-color: #001024;
     color: #ff00ff;
@@ -72,8 +78,8 @@ h2 {
     font-size: 20px;
     cursor: pointer;
     margin-top: 10px;
-    margin-left: 5px;
     margin-bottom: 20px;
+    transition: transform 0.1s ease;
 }
 
 .botones button:hover {
@@ -82,8 +88,8 @@ h2 {
     box-shadow: 0 0 10px #ff00ff;
 }
 
-section {
-    display: inline-block;
+.botones button:active {
+    transform: scale(1.1);
 }
 
 #contenedor {
@@ -91,18 +97,36 @@ section {
     vertical-align: top;
     width: 800px;
     height: 600px;
-    margin-right: 100px;
     border: 5px solid #00ffcc;
     background-color: #00050b;
     box-shadow: 0 0 20px #00ffcc;
     border-radius: 5px;
 }
 
-aside {
+section {
     display: inline-block;
     vertical-align: top;
-    width: 350px;
     margin: 20px;
+}
+
+.juego {
+    width: auto;
+}
+
+.texto {
+    width: 350px;
+    background-color: #00102467;
+    border: 5px solid #00ffcc;
+    padding: 15px;
+    box-shadow: 0 0 20px #00ffcc;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#frase {
+    display: block;
+    width: 1100px;
+    margin: 20px auto;
     background-color: #00102467;
     border: 5px solid #00ffcc;
     padding: 15px;
@@ -116,14 +140,14 @@ p, li {
     color: #cccccc;
 }
 
-ul {
+ul, ol {
     padding-left: 15px;
 }
 
 audio {
     display: block;
     margin: 30px auto;
-    width: 60%;
+    width: 50%;
     border-radius: 5px;
     background-color: #00ffcc;
     padding: 5px;

@@ -6,47 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
   <link rel="stylesheet" href="css/styles.css">
-  <title>Nombre juego</title>
+  <title>EarthEater</title>
 </head>
 
 <body>
 
   <header>
-    <h1>Nombre juego</h1>
+    <h1>EarthEater</h1>
   </header>
 
   <main>
 
-    <section>
+    <section id="frase">
+      <p>"Vivimos en una plácida isla de ignorancia en medio de los mares negros del infinito, y no estaba destinado que viajáramos muy lejos."<br>
+        — HP Lovecraft, La llamada de Cthulhu.</p>
+    </section>
+
+    <section class="juego">
       <div class="botones">
-        <button type="button">Iniciar</button>
-        <button type="button">Reiniciar</button>
-        <button type="button">Pausar</button>
+        <button id="btnIniciar" type="button">Iniciar</button>
+        <button id="btnReiniciar" type="button">Reiniciar</button>
+        <button id="btnPausar" type="button">Pausar</button>
       </div>
 
       <div id="contenedor"></div>
     </section>
 
-    <aside>
+    <section class="texto">
       <h2>Descripción</h2>
-      <p>Texto</p>
+      <p>¡Cthulhu ha despertado! Las estrellas por fin se han alineado y el sacerdote de los Dioses Exteriores ha emergido de la ciudad sumergida de R'lyeh para reclamar su dominio.<br>
+        La Tierra comienza a ser devorada por lo incomprensible y la humanidad cae en la locura, mientras el mundo se desmorona y la realidad misma comienza a fracturarse.</p>
       
       <h2>Instrucciones</h2>
-      <p>Texto</p>
+      <ol>
+        <li>Usa las flechas del teclado para desplazarte por el vacío del cosmos.</li>
+        <li>Devora los planetas que encuentres para aumentar tu fuerza y puntuación.</li>
+        <li>Evita los agujeros negros, ahí se encuentra el caos primordial que drena tu esencia vital.</li>
+        <li>Cada colisión reduce tu vida, si esta llega a cero, serás consumido por el sueño eterno.</li>
+      </ol>
 
       <h2>Integrantes</h2>
       <ul>
         <li>Sebastián Rodríguez Sánchez</li>
         <li>María Paula Zambrano Martínez</li>
       </ul>
-    </aside>
+    </section>
 
-  <audio src="bgm/Interstellar Odyssey.ogg" controls autoplay loop></audio>
+  <audio src="assets/bgm/Interstellar Odyssey.ogg" controls autoplay loop></audio>
 
   </main>
 
   <footer>
-    <p>©2026 Videojuego en Phaser</p>
+    <p>©2026 Videojuego EarthEather</p>
   </footer>
 
   <script src="js/main.js"></script>
